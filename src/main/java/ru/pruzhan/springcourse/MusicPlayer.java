@@ -1,8 +1,6 @@
 package ru.pruzhan.springcourse;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -10,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@Component
-@Scope("prototype")
 public class MusicPlayer {
     private List<Music> musicList = new ArrayList<>();
     @Value("${musicPlayer.volume}")
@@ -22,16 +18,13 @@ public class MusicPlayer {
     public MusicPlayer() {
     }
 
-    public MusicPlayer(List<Music> musicList) {
-        this.musicList = musicList;
-    }
     @PostConstruct
     public void doInitMethod() {
-        System.out.println("Player initialized");
+        System.out.println("Player " + this.hashCode() + " initialized");
     }
     @PreDestroy
     public void doDestroyMethod() {
-        System.out.println("Player destroyed");
+        System.out.println("Player " + this.hashCode() + " destroyed");
     }
 
     public void addMusic(Music music) {
