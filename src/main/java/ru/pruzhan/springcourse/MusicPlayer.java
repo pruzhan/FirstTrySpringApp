@@ -17,6 +17,14 @@ public class MusicPlayer {
         this.musicList = musicList;
     }
 
+    public void doInitMethod() {
+        System.out.println("Player initialised");
+    }
+
+    public void doDestroyMethod() {
+        System.out.println("Player destroyed");
+    }
+
     public void playMusic() {
         Iterator<Music> iterator = musicList.iterator();
         iterator.forEachRemaining(p -> System.out.println(p.getSong()));

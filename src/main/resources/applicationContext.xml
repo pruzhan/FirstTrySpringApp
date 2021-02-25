@@ -10,15 +10,21 @@
 
     <context:property-placeholder location="musicPlayer.properties"/>
     <bean id="classicalBean"
-          class="ru.pruzhan.springcourse.ClassicalMusic">
+          class="ru.pruzhan.springcourse.ClassicalMusic"
+          scope="prototype"
+          factory-method="getClassicalMusic">
     </bean>
 
     <bean id="rockBean"
-          class="ru.pruzhan.springcourse.RockMusic">
+          class="ru.pruzhan.springcourse.RockMusic"
+          scope="prototype"
+          factory-method="getRockMusic">
     </bean>
 
     <bean id="rapBean"
-          class="ru.pruzhan.springcourse.RapMusic">
+          class="ru.pruzhan.springcourse.RapMusic"
+          scope="prototype"
+          factory-method="getRapMusic">
     </bean>
 
     <util:list id="list" value-type="ru.pruzhan.springcourse.Music">
@@ -29,7 +35,9 @@
     </util:list>
 
     <bean id="playerBean"
-          class="ru.pruzhan.springcourse.MusicPlayer">
+          class="ru.pruzhan.springcourse.MusicPlayer"
+          init-method="doInitMethod"
+          destroy-method="doDestroyMethod">
         <property name="musicList" ref="list"/>
         <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>
