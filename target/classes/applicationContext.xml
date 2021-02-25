@@ -9,40 +9,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
     <context:property-placeholder location="musicPlayer.properties"/>
-    <bean id="classicalBean"
-          class="ru.pruzhan.springcourse.ClassicalMusic"
-          scope="prototype"
-          factory-method="getClassicalMusic">
-    </bean>
-
-    <bean id="rockBean"
-          class="ru.pruzhan.springcourse.RockMusic"
-          scope="prototype"
-          factory-method="getRockMusic">
-    </bean>
-
-    <bean id="rapBean"
-          class="ru.pruzhan.springcourse.RapMusic"
-          scope="prototype"
-          factory-method="getRapMusic">
-    </bean>
-
-    <util:list id="list" value-type="ru.pruzhan.springcourse.Music">
-        <ref bean="classicalBean"/>
-        <ref bean="rockBean"/>
-        <ref bean="rapBean"/>
-
-    </util:list>
-
-    <bean id="playerBean"
-          class="ru.pruzhan.springcourse.MusicPlayer"
-          scope="prototype"
-          init-method="doInitMethod"
-          destroy-method="doDestroyMethod">
-        <property name="musicList" ref="list"/>
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
+    <context:component-scan base-package="ru.pruzhan.springcourse"/>
 
 
 </beans>
